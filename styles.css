@@ -13,6 +13,11 @@ header {
   padding: 1rem;
 }
 
+i.fas {
+  color: black;
+  font-size: 20px;
+}
+
 nav ul {
   padding: 0;
   list-style-type: none;
