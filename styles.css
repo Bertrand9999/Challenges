@@ -13,9 +13,8 @@ header {
   padding: 1rem;
 }
 
-i.fas {
-  color: black;
-  font-size: 20px;
+.fa-lock {
+  color: yellow;
 }
 
 nav ul {
