@@ -49,6 +49,13 @@ ul {
   padding: 0;
 }
 
+.destination-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 footer {
   background-color: #35424a;
   color: white;
