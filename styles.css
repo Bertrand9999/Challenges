@@ -43,19 +43,20 @@ main {
 }
 
 .img-container {
-  flex: 1;
+  width: 500px;
+  height: 500px;
+  margin-right: 1rem;
 }
 
 .text-container {
-  flex: 3;
-  display: flex;
-  flex-wrap: wrap;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
 .text-part {
-  flex-basis: calc(33.33% - 1rem);
-  max-height: 500px;
   overflow: auto;
 }
 
