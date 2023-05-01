@@ -49,19 +49,17 @@ main {
 }
 
 .text-container {
-  width: 500px;
   height: 500px;
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
 }
 
 .text-part {
-  display: inline-block;
-  max-height: 500px;
   overflow: auto;
   white-space: pre-wrap;
 }
+
 
 
 other {
