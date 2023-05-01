@@ -39,6 +39,24 @@ nav ul li a:hover {
 
 main {
   padding: 2rem;
+  display: flex;
+}
+
+.img-container {
+  flex: 1;
+}
+
+.text-container {
+  flex: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.text-part {
+  flex-basis: calc(33.33% - 1rem);
+  max-height: 500px;
+  overflow: auto;
 }
 
 other {
