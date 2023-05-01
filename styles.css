@@ -50,14 +50,18 @@ main {
 
 .text-container {
   height: 500px;
-  -webkit-column-width: 500px;
-  -moz-column-width: 500px;
-  column-width: 500px;
+  -webkit-columns: 500px auto;
+  -moz-columns: 500px auto;
+  columns: 500px auto;
   -webkit-column-gap: 1rem;
   -moz-column-gap: 1rem;
   column-gap: 1rem;
+  -webkit-column-fill: auto;
+  -moz-column-fill: auto;
+  column-fill: auto;
   overflow: hidden;
 }
+
 
 .text-part {
   overflow: auto;
