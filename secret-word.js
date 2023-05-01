@@ -13,7 +13,7 @@
     } else if (secretWord === correctWord3) {
       var lockedElement3 = document.querySelector(".lock3");
       lockedElement3.innerHTML = '<a href="https://bertrand9999.github.io/Challenges/prague.html"><i class="material-icons">lock_open</i></a>';
-      else {
+    } else {
       alert("Le mot entré est incorrect. Veuillez réessayer.");
     }
   }
