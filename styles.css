@@ -49,16 +49,17 @@ main {
 }
 
 .text-container {
-  width: calc(500px * 3 + 2rem); /* Trois fois la largeur de l'image plus les espacements */
+  width: 500px;
   height: 500px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
 }
 
 .text-part {
   overflow: auto;
-  white-space: pre-wrap; /* Conserve les sauts de ligne et les espaces */
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 other {
