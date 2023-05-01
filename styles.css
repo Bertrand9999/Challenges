@@ -5,6 +5,7 @@ body {
   padding: 0;
   background-color: #f4f4f4;
   overflow: hidden;
+  min-height: 100vh; /* 100% de la hauteur de la fenêtre */
 }
 
 header {
@@ -96,4 +97,5 @@ footer {
   text-align: center;
   padding: 1rem;
   margin-top: 1rem;
+  flex-shrink: 0;
 }
