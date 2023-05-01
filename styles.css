@@ -49,7 +49,7 @@ main {
 }
 
 .text-container {
-  width: 500px;
+  width: calc(500px * 3 + 2rem); /* Trois fois la largeur de l'image plus les espacements */
   height: 500px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -58,6 +58,7 @@ main {
 
 .text-part {
   overflow: auto;
+  white-space: pre-wrap; /* Conserve les sauts de ligne et les espaces */
 }
 
 other {
