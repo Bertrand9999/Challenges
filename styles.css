@@ -51,16 +51,18 @@ main {
 .text-container {
   width: 500px;
   height: 500px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
   gap: 1rem;
 }
 
 .text-part {
+  display: inline-block;
+  max-height: 500px;
   overflow: auto;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  white-space: pre-wrap;
 }
+
 
 other {
   padding: 2rem;
