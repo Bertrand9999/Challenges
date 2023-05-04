@@ -1,8 +1,8 @@
   function checkSecretWord() {
     var secretWord = document.getElementById("secretWord").value;
-    var correctWord1 = "test1"; // Remplacez "test1" par le mot que vous souhaitez vérifier
-    var correctWord2 = "test2"; // Remplacez "test1" par le mot que vous souhaitez vérifier
-    var correctWord3 = "test3"; // Remplacez "test1" par le mot que vous souhaitez vérifier
+    var correctWord1 = "Harmonie";
+    var correctWord2 = "Paix"; 
+    var correctWord3 = "Joie"; 
     
     if (secretWord === correctWord1) {
       var lockedElement1 = document.querySelector(".lock1");
