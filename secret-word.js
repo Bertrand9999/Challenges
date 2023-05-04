@@ -21,6 +21,15 @@ function getCookie(cname) {
   return "";
 }  
 
+function checkOpenedCadenas() {
+  for (var i = 1; i <= 3; i++) {
+    var cadenaStatus = getCookie("cadenas_" + i);
+    if (cadenaStatus == "open") {
+      document.querySelector('.lock' + i).innerHTML = '<a href="https://monURL' + String.fromCharCode(64 + i) + '.html"><i class="material-icons">lock_open</i></a>';
+    }
+  }
+}
+
 function checkSecretWord(cadenaNumber) {
     var secretWord = document.getElementById("secretWord").value;
     var correctWord1 = "Harmonie";
