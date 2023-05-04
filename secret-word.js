@@ -1,62 +1,52 @@
-function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  var expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + value + expires + "; path=/";
 }
 
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}  
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
 
-function checkOpenedCadenas() {
-  for (var i = 1; i <= 3; i++) {
-    var cadenaStatus = getCookie("cadenas_" + i);
-    var URL1 = "https://bertrand9999.github.io/Challenges/stockholm.html";
-    var URL2 = "https://bertrand9999.github.io/Challenges/lisbonne.html";
-    var URL3 = "https://bertrand9999.github.io/Challenges/prague.html";
-    if (cadenaStatus == "open") {
-      document.querySelector('.lock' + i).innerHTML = '<a href=URL + i><i class="material-icons">lock_open</i></a>';
-    }
+function checkSecretWord() {
+  var secretWord = document.getElementById("secretWord").value;
+  if (secretWord == "Harmonie") {
+    setCookie("lock1", "unlocked", 1);
+    updateLocks();
+  } else if (secretWord == "Paix") {
+    setCookie("lock2", "unlocked", 1);
+    updateLocks();
+  } else if (secretWord == "Joie") {
+    setCookie("lock3", "unlocked", 1);
+    updateLocks();
+  } else {
+    alert("Mot secret incorrect.");
   }
 }
 
-function checkSecretWord(cadenaNumber) {
-    var secretWord = document.getElementById("secretWord").value;
-    var correctWord1 = "Harmonie";
-    var correctWord2 = "Paix"; 
-    var correctWord3 = "Joie"; 
-  
-    var cadenaNumber = 0;
-      
-    if (secretWord === correctWord1) {
-      cadenaNumber=1;
-      setCookie("cadenas_" + cadenaNumber, "open", 30); // Le cookie expire dans 30 jours
-          var lockedElement1 = document.querySelector(".lock1");
-      lockedElement1.innerHTML = '<a href="https://bertrand9999.github.io/Challenges/stockholm.html"><i class="material-icons">lock_open</i></a>';
-    } else if (secretWord === correctWord2) {
-      cadenaNumber=2;
-      setCookie("cadenas_" + cadenaNumber, "open", 30); // Le cookie expire dans 30 jours
-      var lockedElement2 = document.querySelector(".lock2");
-      lockedElement2.innerHTML = '<a href="https://bertrand9999.github.io/Challenges/lisbonne.html"><i class="material-icons">lock_open</i></a>';
-    } else if (secretWord === correctWord3) {
-      cadenaNumber=3;
-      setCookie("cadenas_" + cadenaNumber, "open", 30); // Le cookie expire dans 30 jours
-      var lockedElement3 = document.querySelector(".lock3");
-      lockedElement3.innerHTML = '<a href="https://bertrand9999.github.io/Challenges/prague.html"><i class="material-icons">lock_open</i></a>';
-    } else {
-      alert("Le mot entré est incorrect. Veuillez réessayer.");
-    }
+function updateLocks() {
+  var lock1 = getCookie("lock1");
+  var lock2 = getCookie("lock2");
+  var lock3 = getCookie("lock3");
+
+  if (lock1 == "unlocked") {
+    document.querySelector(".lock1").innerHTML = '<a href="https://bertrand9999.github.io/Challenges/stockholm.html"><i class="material-icons">lock_open</i></a>';
   }
+  if (lock2 == "unlocked") {
+    document.querySelector(".lock2").innerHTML = '<a href="https://bertrand9999.github.io/Challenges/lisbonne.html"><i class="material-icons">lock_open</i></a>';
+  }
+  if (lock3 == "unlocked") {
+    document.querySelector(".lock3").innerHTML = '<a href="https://bertrand9999.github.io/Challenges/prague.html"><i class="material-icons">lock_open</i></a>';
+  }
+}
+
+// Call updateLocks on page load to make sure locks are updated based on cookies
+document.addEventListener("DOMContentLoaded", function () {
+  updateLocks();
+});
