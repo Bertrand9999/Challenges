@@ -38,12 +38,6 @@ nav ul li a:hover {
   color: #cccccc;
 }
 
-main {
-  padding: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .home {
   display: flex;
   flex-wrap: wrap;
