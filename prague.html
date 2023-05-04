@@ -8,8 +8,25 @@
 </head>
 <body>
 <header>
-  <!-- Utilisez une instruction PHP pour inclure le fichier -->
-  <?php include("header.html"); ?>
+  <div class="header-left">
+    <div style="display: flex; align-items: center;">
+          <img src="https://media.licdn.com/dms/image/C4D03AQGtnEQNP2GTNw/profile-displayphoto-shrink_800_800/0/1621501219643?e=2147483647&v=beta&t=AY_7CGL8fkEs5NZRQZE-_qRcSPYn9rYRYHIxtPgFy80" alt="Manue" width="50" height="50" style="float: left;">
+          <p style="margin-left: 10px;">Défiez vos 30 ans !</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <input type="text" id="secretWord" placeholder="Entrez le mot secret">
+    <button onclick="checkSecretWord()">Valider</button>
+    <script src="secret-word.js"></script>
+  </div>
+  <h1>Explorer l'inconnu : voyages, rencontres, aventures</h1>
+  <nav>
+    <ul>
+      <li class="lock1"><a href="https://bertrand9999.github.io/Challenges/stockholm.html"><i class="material-icons">lock_open</i></a></li>
+      <li class="lock2"><i class="material-icons">lock_outline</i></li>
+      <li class="lock3"><i class="material-icons">lock_outline</i></li>
+    </ul>
+  </nav>
 </header>
 
 <main>
