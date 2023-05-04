@@ -26,16 +26,21 @@ function checkSecretWord(cadenaNumber) {
     var correctWord1 = "Harmonie";
     var correctWord2 = "Paix"; 
     var correctWord3 = "Joie"; 
-    
+  
+    var cadenaNumber = 0;
+      
     if (secretWord === correctWord1) {
+      cadenaNumber=1;
       setCookie("cadenas_" + cadenaNumber, "open", 30); // Le cookie expire dans 30 jours
           var lockedElement1 = document.querySelector(".lock1");
       lockedElement1.innerHTML = '<a href="https://bertrand9999.github.io/Challenges/stockholm.html"><i class="material-icons">lock_open</i></a>';
     } else if (secretWord === correctWord2) {
+      cadenaNumber=2;
       setCookie("cadenas_" + cadenaNumber, "open", 30); // Le cookie expire dans 30 jours
       var lockedElement2 = document.querySelector(".lock2");
       lockedElement2.innerHTML = '<a href="https://bertrand9999.github.io/Challenges/lisbonne.html"><i class="material-icons">lock_open</i></a>';
     } else if (secretWord === correctWord3) {
+      cadenaNumber=3;
       setCookie("cadenas_" + cadenaNumber, "open", 30); // Le cookie expire dans 30 jours
       var lockedElement3 = document.querySelector(".lock3");
       lockedElement3.innerHTML = '<a href="https://bertrand9999.github.io/Challenges/prague.html"><i class="material-icons">lock_open</i></a>';
