@@ -44,6 +44,15 @@ main {
   flex-wrap: wrap;
 }
 
+.home {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+main {
+  padding: 2rem;
+}
+
 .img-container {
   width: 500px;
   height: 500px;
