@@ -24,8 +24,11 @@ function getCookie(cname) {
 function checkOpenedCadenas() {
   for (var i = 1; i <= 3; i++) {
     var cadenaStatus = getCookie("cadenas_" + i);
+    var URL1 = "https://bertrand9999.github.io/Challenges/stockholm.html";
+    var URL2 = "https://bertrand9999.github.io/Challenges/lisbonne.html";
+    var URL3 = "https://bertrand9999.github.io/Challenges/prague.html";
     if (cadenaStatus == "open") {
-      document.querySelector('.lock' + i).innerHTML = '<a href="https://monURL' + String.fromCharCode(64 + i) + '.html"><i class="material-icons">lock_open</i></a>';
+      document.querySelector('.lock' + i).innerHTML = '<a href=URL + i><i class="material-icons">lock_open</i></a>';
     }
   }
 }
