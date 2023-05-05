@@ -246,4 +246,5 @@ footer {
   float: left;
   width: calc(100% - 800px); /* Ajustez cette valeur en fonction de la largeur de votre barre latérale et du séparateur */
   margin-left: 36%;
+  margin-top: -600px;
 }
