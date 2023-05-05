@@ -1,3 +1,7 @@
+const initialAmount = 400;
+let remainingAmount = parseFloat(localStorage.getItem("remainingAmount")) || initialAmount;
+let itemList = JSON.parse(localStorage.getItem("itemList")) || [];
+
 let initialAmount = 400;
 let remainingAmount = initialAmount;
 let itemList = [];
@@ -11,6 +15,7 @@ function addItem() {
     remainingAmount -= itemPrice;
     updateRemainingAmount();
     updateItemList();
+    saveToLocalStorage();
   } else {
     alert("Vérifiez le nom et le prix de l'élément, ou vérifiez si vous avez suffisamment d'argent restant.");
   }
@@ -40,12 +45,20 @@ function removeItem(index) {
   itemList.splice(index, 1);
   updateRemainingAmount();
   updateItemList();
+  saveToLocalStorage();
 }
 
 function validateExpenses() {
   alert("Vos dépenses ont été validées.");
   itemList = [];
   updateItemList();
+  saveToLocalStorage();
+}
+
+function saveToLocalStorage() {
+  localStorage.setItem("remainingAmount", remainingAmount);
+  localStorage.setItem("itemList", JSON.stringify(itemList));
 }
 
 updateRemainingAmount();
+updateItemList();
