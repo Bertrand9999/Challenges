@@ -130,3 +130,22 @@ footer {
     columns: 50% auto;
   }
 }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #f4f4f4;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.sidebar input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
