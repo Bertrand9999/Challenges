@@ -135,6 +135,8 @@ ul {
   flex-direction: column;
   gap: 1rem;
   overflow-y: auto;
+  padding-top: 100px; /* Ajouter une marge en haut */
+  padding-bottom: 50px; /* Ajouter une marge en bas */
 }
 
 header {
