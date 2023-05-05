@@ -208,11 +208,12 @@ footer {
     margin-right: 1rem; /* Ajout d'une marge à droite pour éviter que le texte ne se colle à l'image */
 }
 
-.separator {
+  .separator {
     border-left: 2px solid #000;
     height: 100%;
     position: absolute;
-    left: 50%;
+    left: 35%; /* Modifiez cette valeur pour ajuster la position horizontale de la barre */
+    top: 0; /* Ajouté pour que la barre commence en haut */
   }
 
   .photo-texts {
