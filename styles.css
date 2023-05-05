@@ -10,11 +10,8 @@ html, body {
 }
 
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  padding: 0;
-  background-color: #f4f4f4;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
@@ -134,9 +131,9 @@ ul {
 
 .sidebar {
   position: fixed;
-  top: 0;
+  top: 100px; /* Ajouter une marge en haut */
   right: 0;
-  bottom: 0;
+  bottom: 50px; /* Ajouter une marge en bas */
   width: 300px;
   padding: 1rem;
   background-color: white;
@@ -146,8 +143,6 @@ ul {
   flex-direction: column;
   gap: 1rem;
   overflow-y: auto;
-  padding-top: 100px;
-  padding-bottom: 50px;
 }
 
 header {
@@ -168,6 +163,8 @@ footer {
   flex-shrink: 0;
   z-index: 2;
   position: relative;
+  bottom: 0;
+  width: 100%;
 }
 
 
