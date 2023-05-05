@@ -2,10 +2,6 @@ const initialAmount = 400;
 let remainingAmount = parseFloat(localStorage.getItem("remainingAmount")) || initialAmount;
 let itemList = JSON.parse(localStorage.getItem("itemList")) || [];
 
-let initialAmount = 400;
-let remainingAmount = initialAmount;
-let itemList = [];
-
 function addItem() {
   const itemName = document.getElementById("itemName").value;
   const itemPrice = parseFloat(document.getElementById("itemPrice").value);
