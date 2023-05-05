@@ -80,12 +80,15 @@ function saveToLocalStorage() {
   localStorage.setItem("itemList", JSON.stringify(itemList));
 }
 
+  const validateExpensesButton = document.getElementById("validateExpensesButton");
+  validateExpensesButton.addEventListener("click", validateExpenses);
+  
 updateRemainingAmount();
 updateItemList();
 updateValidatedExpensesList();
 const addItemButton = document.getElementById("addItemButton");
   addItemButton.addEventListener("click", addItem);
   
-  const validateExpensesButton = document.getElementById("validateExpensesButton");
-  validateExpensesButton.addEventListener("click", validateExpenses);
+  
+  
 });
