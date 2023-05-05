@@ -1,4 +1,5 @@
-const initialAmount = 400;
+document.addEventListener("DOMContentLoaded", () => {
+  const initialAmount = 400;
 let remainingAmount = parseFloat(localStorage.getItem("remainingAmount")) || initialAmount;
 let itemList = JSON.parse(localStorage.getItem("itemList")) || [];
 let validatedExpensesList = JSON.parse(localStorage.getItem("validatedExpensesList")) || [];
@@ -82,3 +83,5 @@ function saveToLocalStorage() {
 updateRemainingAmount();
 updateItemList();
 updateValidatedExpensesList();
+
+});
