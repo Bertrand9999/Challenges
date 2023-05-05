@@ -167,4 +167,38 @@ footer {
   width: 100%;
 }
 
+.content-wrapper {
+    text-align: center;
+    max-width: 80%;
+    display: flex; /* Ajout de la propriété display */
+    flex-direction: column; /* Ajout de la propriété flex-direction */
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
 
+.timer {
+    display: inline-flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.countdown-number {
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.poetic-text {
+    display: flex; /* Ajout de la propriété display */
+    align-items: center; /* Ajout de la propriété align-items */
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 90%;
+    white-space: nowrap;
+}
