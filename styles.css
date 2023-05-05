@@ -198,3 +198,11 @@ footer {
     max-width: 90%;
     white-space: nowrap;
 }
+
+.stockholm-image {
+    max-width: 80%;
+    max-height: 30vh;
+    border-radius: 10px;
+    float: left; /* Ajout de la propriété float */
+    margin-right: 1rem; /* Ajout d'une marge à droite pour éviter que le texte ne se colle à l'image */
+}
