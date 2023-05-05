@@ -81,11 +81,13 @@ function saveToLocalStorage() {
   const validateExpensesButton = document.getElementById("validateExpensesButton");
   validateExpensesButton.addEventListener("click", validateExpenses);
   
+  const addItemButton = document.getElementById("addItemButton");
+  addItemButton.addEventListener("click", addItem);
+  
 updateRemainingAmount();
 updateItemList();
 updateValidatedExpensesList();
-const addItemButton = document.getElementById("addItemButton");
-  addItemButton.addEventListener("click", addItem);
+
   
   
   
