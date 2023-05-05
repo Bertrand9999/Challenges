@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateRemainingAmount() {
-    document.getElementById("remainingAmount").textContent = remainingAmount.toFixed(
-      2
-    );
+  document.getElementById("remainingAmount").textContent = remainingAmount.toFixed(2);
+  document.getElementById("initialAmount").textContent = initialAmount.toFixed(2);
+
   }
 
   function updateItemList() {
