@@ -245,9 +245,9 @@ footer {
 }
 
 .photo-text-container {
-  float: left;
   width: calc(100% - 800px); /* Ajustez cette valeur en fonction de la largeur de votre barre latérale et du séparateur */
-  margin-left: 36%;
-  padding-right: -200px;
-  margin-top: -600px;
+}
+.main-content {
+  display: flex;
+  margin-left: 36%; /* Ajustez cette valeur en fonction de l'espace souhaité après le contenu précédent */
 }
