@@ -59,21 +59,19 @@ function removeItem(index) {
 }
 
 function validateExpenses() {
-  if (itemList.length === 0) {
-    alert("Le panier est vide.");
-    return;
+  if (expenses.length > 0) {
+    validatedExpenses = validatedExpenses.concat(expenses);
+    localStorage.setItem("validatedExpenses", JSON.stringify(validatedExpenses));
+    expenses = [];
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+    updateExpensesList();
+    updateValidatedExpensesList();
+    updateRemainingAmount();
+  } else {
+    alert("Il n'y a pas d'éléments à valider.");
   }
-
-  itemList.forEach((item) => {
-    validatedExpensesList.push(item);
-  });
-
-  itemList = [];
-  updateRemainingAmount();
-  updateItemList();
-  updateValidatedExpensesList();
-  saveToLocalStorage();
 }
+
 
 function saveToLocalStorage() {
   localStorage.setItem("remainingAmount", remainingAmount);
