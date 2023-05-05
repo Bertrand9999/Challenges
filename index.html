@@ -78,7 +78,21 @@
       D’hommes ! Des arcs-en-ciel tendus comme des brides <br>
       Sous l’horizon des mers, à de glauques <br> <br>
   </div>  
+  
   </main>
+  <div class="sidebar">
+  <h2>Compteur de dépenses</h2>
+  <p>Somme initiale : <span id="initialAmount">1000</span> €</p>
+  <p>Somme restante : <span id="remainingAmount">1000</span> €</p>
+  <h3>Ajouter un élément</h3>
+  <input type="text" id="itemName" placeholder="Nom de l'élément">
+  <input type="number" id="itemPrice" placeholder="Prix">
+  <button onclick="addItem()">Ajouter</button>
+  <h3>Panier</h3>
+  <ul id="itemList"></ul>
+  <button onclick="validateExpenses()">Valider les dépenses</button>
+  </div>
+
   <footer>
     <p>&copy; 2023 Explorer l'inconnu : voyages, rencontres, aventures. Tous droits réservés.</p>
   </footer>
