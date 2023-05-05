@@ -85,4 +85,7 @@ updateItemList();
 updateValidatedExpensesList();
 const addItemButton = document.getElementById("addItemButton");
   addItemButton.addEventListener("click", addItem);
+  
+  const validateExpensesButton = document.getElementById("validateExpensesButton");
+  validateExpensesButton.addEventListener("click", validateExpenses);
 });
