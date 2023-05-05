@@ -144,6 +144,7 @@ ul {
   flex-direction: column;
   gap: 1rem;
   overflow-y: auto;
+  float: right;
 }
 
 header {
@@ -238,4 +239,9 @@ footer {
 
 .photo-text p {
   flex: 1;
+}
+
+.photo-text-container {
+  float: right;
+  width: calc(100% - 250px); /* Ajustez cette valeur en fonction de la largeur de votre barre latérale et du séparateur */
 }
