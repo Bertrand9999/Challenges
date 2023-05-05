@@ -1,6 +1,8 @@
 const initialAmount = 400;
 let remainingAmount = parseFloat(localStorage.getItem("remainingAmount")) || initialAmount;
 let itemList = JSON.parse(localStorage.getItem("itemList")) || [];
+let validatedExpensesList = JSON.parse(localStorage.getItem("validatedExpensesList")) || [];
+
 
 function addItem() {
   const itemName = document.getElementById("itemName").value;
@@ -15,6 +17,17 @@ function addItem() {
   } else {
     alert("Vérifiez le nom et le prix de l'élément, ou vérifiez si vous avez suffisamment d'argent restant.");
   }
+}
+
+function updateValidatedExpensesList() {
+  const validatedExpensesListElement = document.getElementById("validatedExpensesList");
+  validatedExpensesListElement.innerHTML = "";
+
+  validatedExpensesList.forEach((expense, index) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `${expense.name} - ${expense.price} €`;
+    validatedExpensesListElement.appendChild(listItem);
+  });
 }
 
 function updateRemainingAmount() {
@@ -45,9 +58,19 @@ function removeItem(index) {
 }
 
 function validateExpenses() {
-  alert("Vos dépenses ont été validées.");
+  if (itemList.length === 0) {
+    alert("Le panier est vide.");
+    return;
+  }
+
+  itemList.forEach((item) => {
+    validatedExpensesList.push(item);
+  });
+
   itemList = [];
+  updateRemainingAmount();
   updateItemList();
+  updateValidatedExpensesList();
   saveToLocalStorage();
 }
 
@@ -58,3 +81,4 @@ function saveToLocalStorage() {
 
 updateRemainingAmount();
 updateItemList();
+updateValidatedExpensesList();
