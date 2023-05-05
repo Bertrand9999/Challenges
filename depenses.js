@@ -83,5 +83,6 @@ function saveToLocalStorage() {
 updateRemainingAmount();
 updateItemList();
 updateValidatedExpensesList();
-
+const addItemButton = document.getElementById("addItemButton");
+  addItemButton.addEventListener("click", addItem);
 });
