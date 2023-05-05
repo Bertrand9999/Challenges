@@ -1,4 +1,4 @@
-let initialAmount = 1000;
+let initialAmount = 400;
 let remainingAmount = initialAmount;
 let itemList = [];
 
@@ -36,4 +36,16 @@ function updateItemList() {
 }
 
 function removeItem(index) {
-  remaining
+  remainingAmount += itemList[index].price;
+  itemList.splice(index, 1);
+  updateRemainingAmount();
+  updateItemList();
+}
+
+function validateExpenses() {
+  alert("Vos dépenses ont été validées.");
+  itemList = [];
+  updateItemList();
+}
+
+updateRemainingAmount();
