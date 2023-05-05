@@ -207,3 +207,31 @@ footer {
     float: left; /* Ajout de la propriété float */
     margin-right: 1rem; /* Ajout d'une marge à droite pour éviter que le texte ne se colle à l'image */
 }
+
+.separator {
+    border-left: 2px solid #000;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+  }
+
+  .photo-texts {
+    position: absolute;
+    left: 52%;
+  }
+
+  .photo-text {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+  }
+
+  .photo-text img {
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
+  }
+
+  .photo-text p {
+    flex: 1;
+  }
