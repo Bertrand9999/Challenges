@@ -169,11 +169,12 @@ footer {
 
 .content-wrapper {
     max-width: 80%;
-    display: flex; /* Ajout de la propriété display */
-    flex-direction: column; /* Ajout de la propriété flex-direction */
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
+    text-align: left; /* Ajout de la propriété text-align */
 }
 
 .timer {
