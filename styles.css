@@ -216,30 +216,26 @@ footer {
     top: 0; /* Ajouté pour que la barre commence en haut */
   }
 
-  .photo-texts {
-    margin-left: 38%; /* Ajustez cette valeur pour déplacer les photos/descriptions horizontalement */
-    margin-top: 20px; /* Ajoutez une marge en haut pour séparer les photos/descriptions de la photo de Stockholm */
-  }
+.photo-texts {
+  margin-left: 38%; /* Ajustez cette valeur pour déplacer les photos/descriptions horizontalement */
+  margin-top: 20px; /* Ajoutez une marge en haut pour séparer les photos/descriptions de la photo de Stockholm */
+}
 
-  .photo-text {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
-  }
+.photo-text {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
 
-  .photo-text.left img {
-    margin-right: 20px;
-  }
+.photo-text.left img {
+  margin-right: 20px;
+}
 
-  .photo-text.right img {
-    order: 1;
-    margin-left: 20px;
-  }
+.photo-text.right img {
+  order: 1;
+  margin-left: 20px;
+}
 
-  .photo-text p {
-    flex: 1;
-  }
-
-
-
-
+.photo-text p {
+  flex: 1;
+}
