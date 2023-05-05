@@ -243,5 +243,5 @@ footer {
 
 .photo-text-container {
   float: right;
-  width: calc(100% - 250px); /* Ajustez cette valeur en fonction de la largeur de votre barre latérale et du séparateur */
+  width: calc(100% - 700px); /* Ajustez cette valeur en fonction de la largeur de votre barre latérale et du séparateur */
 }
