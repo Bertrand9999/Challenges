@@ -236,3 +236,12 @@ footer {
   .photo-text p {
     flex: 1;
   }
+
+.photo-text.left img {
+    margin-right: 20px;
+  }
+
+  .photo-text.right img {
+    order: 1;
+    margin-left: 20px;
+  }
