@@ -41,11 +41,8 @@ function addItem() {
     }
   }
 
-
-  function updateValidatedExpensesList() {
-    const validatedExpensesListElement = document.getElementById(
-      "validatedExpensesList"
-    );
+function updateValidatedExpensesList() {
+    const validatedExpensesListElement = document.getElementById("validatedExpensesList");
     validatedExpensesListElement.innerHTML = "";
 
     validatedExpensesList.forEach((expense, index) => {
@@ -53,7 +50,8 @@ function addItem() {
       listItem.textContent = `${expense.name} - ${expense.price} €`;
       validatedExpensesListElement.appendChild(listItem);
     });
-  }
+}
+
 
   function updateRemainingAmount() {
   document.getElementById("remainingAmount").textContent = remainingAmount.toFixed(2);
