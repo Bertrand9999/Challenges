@@ -105,20 +105,31 @@ function removeItem(index) {
 
 function validateExpenses() {
     if (itemList.length > 0) {
-      validatedExpensesList = validatedExpensesList.concat(itemList);
+      validatedExpensesList = validatedExpensesList.concat(itemList.map(item => ({name: item.nom, price: item.prix})));
       localStorage.setItem(
         "validatedExpensesList",
-        JSON.stringify(validatedExpensesList.map(item => ({name: item.nom, price: item.prix})))  // Convertir chaque article à un format avec 'name' et 'price'
+        JSON.stringify(validatedExpensesList)
       );
       itemList = [];
-      updateItemList();  // Mettre à jour la liste d'articles sur la page
-      saveToLocalStorage();  // Sauvegarder le nouveau itemList dans localStorage
+      db.collection('depenses').get().then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+              db.collection('depenses').doc(doc.id).delete()
+              .then(function() {
+                  console.log('Dépense supprimée avec l\'ID: ', doc.id);
+              })
+              .catch(function(error) {
+                  console.error('Erreur lors de la suppression de la dépense: ', error);
+              });
+          });
+      });
+      updateItemList();
       updateValidatedExpensesList();
       updateRemainingAmount();
     } else {
       alert("Il n'y a pas d'éléments à valider.");
     }
   }
+
 
 
   function saveToLocalStorage() {
