@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function updateValidatedExpensesList() {
+    function updateValidatedExpensesList() {
     const validatedExpensesListElement = document.getElementById("validatedExpensesList");
     validatedExpensesListElement.innerHTML = "";
 
@@ -55,26 +55,27 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateItemList() {
+    // Récupérer les données à partir de Firebase
     db.collection('depenses').get().then(function(querySnapshot) {
-        itemList = [];
-        querySnapshot.forEach(function(doc) {
-            const item = doc.data();
-            item.id = doc.id;
-            itemList.push(item);
-        });
+      itemList = [];
+      querySnapshot.forEach(function(doc) {
+        const item = doc.data();
+        item.id = doc.id;
+        itemList.push(item);
+      });
 
-        const itemListElement = document.getElementById("itemList");
-        itemListElement.innerHTML = "";
+      const itemListElement = document.getElementById("itemList");
+      itemListElement.innerHTML = "";
 
-        itemList.forEach((item, index) => {
-            const li = document.createElement("li");
-            li.textContent = `${item.nom} - ${item.prix} €`;
-            const removeButton = document.createElement("button");
-            removeButton.textContent = "Supprimer";
-            removeButton.onclick = () => removeItem(index);
-            li.appendChild(removeButton);
-            itemListElement.appendChild(li);
-        });
+      itemList.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${item.nom} - ${item.prix} €`;
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Supprimer";
+        removeButton.onclick = () => removeItem(index);
+        li.appendChild(removeButton);
+        itemListElement.appendChild(li);
+      });
     });
   }
 
@@ -120,7 +121,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const addItemButton = document.getElementById("addItemButton");
   addItemButton.addEventListener("click", addItem);
 
-  updateRemainingAmount();
+  // Récupérer les données initiales depuis Firebase
+  db.collection('remainingAmount').doc('amount').get()
+    .then((doc) => {
+      if (doc.exists) {
+        remainingAmount = doc.data().value;
+        updateRemainingAmount();
+      }
+    });
+
+  db.collection('validatedExpensesList').get()
+    .then((querySnapshot) => {
+      validatedExpensesList = [];
+      querySnapshot.forEach((doc) => {
+        validatedExpensesList.push(doc.data());
+      });
+      updateValidatedExpensesList();
+    });
+
+  // Mettre à jour la liste des dépenses
   updateItemList();
-  updateValidatedExpensesList();
 });
