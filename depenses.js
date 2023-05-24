@@ -99,3 +99,44 @@ document.addEventListener("DOMContentLoaded", () => {
   updateItemList();
   updateValidatedExpensesList();
 });
+
+
+
+// Votre script Firebase et configuration ici...
+
+// Initialiser Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Obtenir une référence à Firestore
+var db = firebase.firestore();
+
+// Obtenir une référence aux éléments du DOM
+var itemNameInput = document.getElementById('itemName');
+var itemPriceInput = document.getElementById('itemPrice');
+var addItemButton = document.getElementById('addItemButton');
+var remainingAmountSpan = document.getElementById('remainingAmount');
+
+// Ajouter un gestionnaire d'événements au bouton "Ajouter"
+addItemButton.addEventListener('click', function() {
+    // Créer un objet représentant la dépense
+    var depense = {
+        nom: itemNameInput.value,
+        prix: Number(itemPriceInput.value),
+        date: firebase.firestore.Timestamp.fromDate(new Date())
+    };
+
+    // Envoyer l'objet à Firestore
+    db.collection('depenses').add(depense)
+        .then(function(docRef) {
+            console.log('Dépense enregistrée avec l\'ID: ', docRef.id);
+            // Mettre à jour la somme restante
+            remainingAmountSpan.textContent = Number(remainingAmountSpan.textContent) - depense.prix;
+        })
+        .catch(function(error) {
+            console.error('Erreur lors de l\'ajout de la dépense: ', error);
+        });
+
+    // Réinitialiser les champs
+    itemNameInput.value = '';
+    itemPriceInput.value = '';
+});
