@@ -6,13 +6,34 @@ document.addEventListener("DOMContentLoaded", () => {
   let validatedExpensesList =
     JSON.parse(localStorage.getItem("validatedExpensesList")) || [];
 
+  // Initialiser Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Obtenir une référence à Firestore
+  var db = firebase.firestore();
+
   function addItem() {
     const itemName = document.getElementById("itemName").value;
     const itemPrice = parseFloat(document.getElementById("itemPrice").value);
 
     if (itemName && itemPrice && remainingAmount >= itemPrice) {
-      itemList.push({ name: itemName, price: itemPrice });
+      const item = { name: itemName, price: itemPrice };
+      itemList.push(item);
       remainingAmount -= itemPrice;
+      
+      // Envoyer l'objet à Firestore
+      db.collection('depenses').add({
+          nom: item.name,
+          prix: item.price,
+          date: firebase.firestore.Timestamp.fromDate(new Date())
+      })
+      .then(function(docRef) {
+          console.log('Dépense enregistrée avec l\'ID: ', docRef.id);
+      })
+      .catch(function(error) {
+          console.error('Erreur lors de l\'ajout de la dépense: ', error);
+      });
+
       updateRemainingAmount();
       updateItemList();
       saveToLocalStorage();
@@ -22,6 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
   }
+
+  // Reste du script...
+});
+
 
   function updateValidatedExpensesList() {
     const validatedExpensesListElement = document.getElementById(
@@ -98,45 +123,4 @@ document.addEventListener("DOMContentLoaded", () => {
   updateRemainingAmount();
   updateItemList();
   updateValidatedExpensesList();
-});
-
-
-
-// Votre script Firebase et configuration ici...
-
-// Initialiser Firebase
-firebase.initializeApp(firebaseConfig);
-
-// Obtenir une référence à Firestore
-var db = firebase.firestore();
-
-// Obtenir une référence aux éléments du DOM
-var itemNameInput = document.getElementById('itemName');
-var itemPriceInput = document.getElementById('itemPrice');
-var addItemButton = document.getElementById('addItemButton');
-var remainingAmountSpan = document.getElementById('remainingAmount');
-
-// Ajouter un gestionnaire d'événements au bouton "Ajouter"
-addItemButton.addEventListener('click', function() {
-    // Créer un objet représentant la dépense
-    var depense = {
-        nom: itemNameInput.value,
-        prix: Number(itemPriceInput.value),
-        date: firebase.firestore.Timestamp.fromDate(new Date())
-    };
-
-    // Envoyer l'objet à Firestore
-    db.collection('depenses').add(depense)
-        .then(function(docRef) {
-            console.log('Dépense enregistrée avec l\'ID: ', docRef.id);
-            // Mettre à jour la somme restante
-            remainingAmountSpan.textContent = Number(remainingAmountSpan.textContent) - depense.prix;
-        })
-        .catch(function(error) {
-            console.error('Erreur lors de l\'ajout de la dépense: ', error);
-        });
-
-    // Réinitialiser les champs
-    itemNameInput.value = '';
-    itemPriceInput.value = '';
 });
