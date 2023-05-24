@@ -6,9 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let validatedExpensesList =
     JSON.parse(localStorage.getItem("validatedExpensesList")) || [];
 
-  // Initialiser Firebase
-  firebase.initializeApp(firebaseConfig);
-
   // Obtenir une référence à Firestore
   var db = firebase.firestore();
 
