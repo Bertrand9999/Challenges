@@ -38,13 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-    function updateValidatedExpensesList() {
+  function updateValidatedExpensesList() {
     const validatedExpensesListElement = document.getElementById("validatedExpensesList");
     validatedExpensesListElement.innerHTML = "";
 
     validatedExpensesList.forEach((expense, index) => {
       const listItem = document.createElement("li");
-      listItem.textContent = `${expense.name} - ${expense.price} €`;
+      listItem.textContent = `${expense.nom} - ${expense.prix} €`;
       validatedExpensesListElement.appendChild(listItem);
     });
   }
@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateItemList() {
-    // Récupérer les données à partir de Firebase
     db.collection('depenses').get().then(function(querySnapshot) {
       itemList = [];
       querySnapshot.forEach(function(doc) {
@@ -82,34 +81,37 @@ document.addEventListener("DOMContentLoaded", () => {
   function removeItem(index) {
     const item = itemList[index];
     db.collection('depenses').doc(item.id).delete()
-    .then(function() {
+      .then(function() {
         console.log('Dépense supprimée avec l\'ID: ', item.id);
         remainingAmount += item.prix;
         itemList.splice(index, 1);
         updateRemainingAmount();
         updateItemList();
-    })
-    .catch(function(error) {
+      })
+      .catch(function(error) {
         console.error('Erreur lors de la suppression de la dépense: ', error);
-    });
+      });
   }
 
   function validateExpenses() {
     if (itemList.length > 0) {
-      validatedExpensesList = validatedExpensesList.concat(itemList.map(item => ({name: item.nom, price: item.prix})));
-      updateValidatedExpensesList();
-      updateRemainingAmount();
+      const batch = db.batch();
+
       itemList.forEach((item) => {
-        db.collection('depenses').doc(item.id).delete()
-        .then(function() {
-          console.log('Dépense supprimée avec l\'ID: ', item.id);
-        })
-        .catch(function(error) {
-          console.error('Erreur lors de la suppression de la dépense: ', error);
-        });
+        const docRef = db.collection('validatedExpenses').doc();
+        batch.set(docRef, item);
       });
-      itemList = [];
-      updateItemList();
+
+      batch.commit().then(() => {
+        console.log('Dépenses validées enregistrées avec succès');
+        remainingAmount -= itemList.reduce((total, item) => total + item.prix, 0);
+        itemList = [];
+        updateRemainingAmount();
+        updateItemList();
+        updateValidatedExpensesList();
+      }).catch((error) => {
+        console.error('Erreur lors de l\'enregistrement des dépenses validées : ', error);
+      });
     } else {
       alert("Il n'y a pas d'éléments à valider.");
     }
@@ -130,7 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-  db.collection('validatedExpensesList').get()
+  // Récupérer les dépenses validées depuis Firebase
+  db.collection('validatedExpenses').get()
     .then((querySnapshot) => {
       validatedExpensesList = [];
       querySnapshot.forEach((doc) => {
