@@ -9,14 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Obtenir une référence à Firestore
   var db = firebase.firestore();
 
-  function addItem() {
+function addItem() {
     const itemName = document.getElementById("itemName").value;
     const itemPrice = parseFloat(document.getElementById("itemPrice").value);
 
     if (itemName && itemPrice && remainingAmount >= itemPrice) {
       const item = { name: itemName, price: itemPrice };
-      itemList.push(item);
-      remainingAmount -= itemPrice;
       
       // Envoyer l'objet à Firestore
       db.collection('depenses').add({
@@ -26,23 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(function(docRef) {
           console.log('Dépense enregistrée avec l\'ID: ', docRef.id);
+          item.id = docRef.id;  // Ajoutez cette ligne
+          itemList.push(item);  // Déplacez cette ligne ici
+          remainingAmount -= itemPrice;
+          updateRemainingAmount();
+          updateItemList();
+          saveToLocalStorage();
       })
       .catch(function(error) {
           console.error('Erreur lors de l\'ajout de la dépense: ', error);
       });
-
-      updateRemainingAmount();
-      updateItemList();
-      saveToLocalStorage();
     } else {
       alert(
         "Vérifiez le nom et le prix de l'élément, ou vérifiez si vous avez suffisamment d'argent restant."
       );
     }
   }
-
-  // Reste du script...
-});
 
 
   function updateValidatedExpensesList() {
@@ -64,28 +61,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-  function updateItemList() {
-    const itemListElement = document.getElementById("itemList");
-    itemListElement.innerHTML = "";
+function updateItemList() {
+    db.collection('depenses').get().then(function(querySnapshot) {
+        itemList = [];
+        querySnapshot.forEach(function(doc) {
+            const item = doc.data();
+            item.id = doc.id;
+            itemList.push(item);
+        });
 
-    itemList.forEach((item, index) => {
-      const li = document.createElement("li");
-      li.textContent = `${item.name} - ${item.price} €`;
-      const removeButton = document.createElement("button");
-      removeButton.textContent = "Supprimer";
-      removeButton.onclick = () => removeItem(index);
-      li.appendChild(removeButton);
-      itemListElement.appendChild(li);
+        const itemListElement = document.getElementById("itemList");
+        itemListElement.innerHTML = "";
+
+        itemList.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.textContent = `${item.nom} - ${item.prix} €`;
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Supprimer";
+            removeButton.onclick = () => removeItem(index);
+            li.appendChild(removeButton);
+            itemListElement.appendChild(li);
+        });
     });
   }
 
-  function removeItem(index) {
-    remainingAmount += itemList[index].price;
-    itemList.splice(index, 1);
-    updateRemainingAmount();
-    updateItemList();
-    saveToLocalStorage();
+
+function removeItem(index) {
+    const item = itemList[index];
+    db.collection('depenses').doc(item.id).delete()
+    .then(function() {
+        console.log('Dépense supprimée avec l\'ID: ', item.id);
+        remainingAmount += item.price;
+        itemList.splice(index, 1);
+        updateRemainingAmount();
+        updateItemList();
+        saveToLocalStorage();
+    })
+    .catch(function(error) {
+        console.error('Erreur lors de la suppression de la dépense: ', error);
+    });
   }
+
 
   function validateExpenses() {
     if (itemList.length > 0) {
