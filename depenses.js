@@ -1,66 +1,79 @@
 document.addEventListener("DOMContentLoaded", () => {
   const initialAmount = 400;
   let remainingAmount = initialAmount;
-  let expenseList = [];
+  let itemList = [];
 
-  const remainingAmountElement = document.getElementById("remainingAmount");
-  const expenseListElement = document.getElementById("expenseList");
+  // Obtenir une référence à Firestore
+  const db = firebase.firestore();
 
-  function addExpense() {
-    const expenseName = document.getElementById("expenseName").value;
-    const expenseAmount = parseFloat(document.getElementById("expenseAmount").value);
+  function addItem() {
+    const itemName = document.getElementById("itemName").value;
+    const itemPrice = parseFloat(document.getElementById("itemPrice").value);
 
-    if (expenseName && expenseAmount) {
-      const expense = { name: expenseName, amount: expenseAmount };
+    if (itemName && itemPrice && remainingAmount >= itemPrice) {
+      const item = { name: itemName, price: itemPrice };
 
-      // Ajouter la dépense à la liste
-      expenseList.push(expense);
-      remainingAmount -= expenseAmount;
-
-      updateRemainingAmount();
-      updateExpenseList();
-      clearInputFields();
+      db.collection("expenses")
+        .add(item)
+        .then(() => {
+          itemList.push(item);
+          remainingAmount -= itemPrice;
+          updateRemainingAmount();
+          updateItemList();
+        })
+        .catch((error) => {
+          console.error("Erreur lors de l'ajout de la dépense :", error);
+        });
     } else {
-      alert("Veuillez entrer un nom et un montant valide pour la dépense.");
+      alert(
+        "Vérifiez le nom et le prix de l'élément, ou vérifiez si vous avez suffisamment d'argent restant."
+      );
     }
   }
 
   function updateRemainingAmount() {
-    remainingAmountElement.textContent = remainingAmount.toFixed(2);
+    document.getElementById("remainingAmount").textContent = remainingAmount.toFixed(2);
+    document.getElementById("initialAmount").textContent = initialAmount.toFixed(2);
   }
 
-  function updateExpenseList() {
-    expenseListElement.innerHTML = "";
+  function updateItemList() {
+    const itemListElement = document.getElementById("itemList");
+    itemListElement.innerHTML = "";
 
-    expenseList.forEach((expense, index) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = `${expense.name} - ${expense.amount} €`;
-
+    itemList.forEach((item, index) => {
+      const li = document.createElement("li");
+      li.textContent = `${item.name} - ${item.price} €`;
       const removeButton = document.createElement("button");
       removeButton.textContent = "Supprimer";
-      removeButton.onclick = () => removeExpense(index);
-
-      listItem.appendChild(removeButton);
-      expenseListElement.appendChild(listItem);
+      removeButton.onclick = () => removeItem(index, item.id);
+      li.appendChild(removeButton);
+      itemListElement.appendChild(li);
     });
   }
 
-  function removeExpense(index) {
-    const removedExpense = expenseList.splice(index, 1)[0];
-    remainingAmount += removedExpense.amount;
-
-    updateRemainingAmount();
-    updateExpenseList();
+  function removeItem(index, itemId) {
+    db.collection("expenses")
+      .doc(itemId)
+      .delete()
+      .then(() => {
+        remainingAmount += itemList[index].price;
+        itemList.splice(index, 1);
+        updateRemainingAmount();
+        updateItemList();
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la suppression de la dépense :", error);
+      });
   }
 
-  function clearInputFields() {
-    document.getElementById("expenseName").value = "";
-    document.getElementById("expenseAmount").value = "";
-  }
-
-  const addExpenseButton = document.getElementById("addExpenseButton");
-  addExpenseButton.addEventListener("click", addExpense);
+  const addItemButton = document.getElementById("addItemButton");
+  addItemButton.addEventListener("click", addItem);
 
   updateRemainingAmount();
-  updateExpenseList();
+
+  // Observer les modifications de la collection "expenses" en temps réel
+  db.collection("expenses").onSnapshot((snapshot) => {
+    itemList = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    updateItemList();
+  });
 });
