@@ -38,16 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function updateValidatedExpensesList() {
-    const validatedExpensesListElement = document.getElementById("validatedExpensesList");
-    validatedExpensesListElement.innerHTML = "";
+function updateValidatedExpensesList() {
+  const validatedExpensesListElement = document.getElementById("validatedExpensesList");
+  validatedExpensesListElement.innerHTML = "";
 
-    validatedExpensesList.forEach((expense, index) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = `${expense.nom} - ${expense.prix} €`;
-      validatedExpensesListElement.appendChild(listItem);
-    });
-  }
+  validatedExpensesList.forEach((expense, index) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `${expense.nom} - ${expense.prix} €`;
+    validatedExpensesListElement.appendChild(listItem);
+  });
+}
+
 
   function updateRemainingAmount() {
     document.getElementById("remainingAmount").textContent = remainingAmount.toFixed(2);
