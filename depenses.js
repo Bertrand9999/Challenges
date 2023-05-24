@@ -95,28 +95,38 @@ function updateValidatedExpensesList() {
   }
 
   function validateExpenses() {
-    if (itemList.length > 0) {
-      const batch = db.batch();
+  if (itemList.length > 0) {
+    const batch = db.batch();
 
-      itemList.forEach((item) => {
-        const docRef = db.collection('validatedExpenses').doc();
-        batch.set(docRef, item);
-      });
+    itemList.forEach((item) => {
+      const docRef = db.collection('validatedExpenses').doc();
+      batch.set(docRef, item);
+    });
 
-      batch.commit().then(() => {
-        console.log('Dépenses validées enregistrées avec succès');
-        remainingAmount -= itemList.reduce((total, item) => total + item.prix, 0);
-        itemList = [];
-        updateRemainingAmount();
-        updateItemList();
-        updateValidatedExpensesList();
-      }).catch((error) => {
-        console.error('Erreur lors de l\'enregistrement des dépenses validées : ', error);
-      });
-    } else {
-      alert("Il n'y a pas d'éléments à valider.");
-    }
+    batch.commit().then(() => {
+      console.log('Dépenses validées enregistrées avec succès');
+      remainingAmount -= itemList.reduce((total, item) => total + item.prix, 0);
+      itemList = [];
+      updateRemainingAmount();
+      updateItemList();
+      updateValidatedExpensesList();
+
+      // Mettre à jour la valeur du montant restant dans la base de données
+      db.collection('remainingAmount').doc('amount').set({ value: remainingAmount })
+        .then(() => {
+          console.log('Montant restant mis à jour avec succès');
+        })
+        .catch((error) => {
+          console.error('Erreur lors de la mise à jour du montant restant : ', error);
+        });
+    }).catch((error) => {
+      console.error('Erreur lors de l\'enregistrement des dépenses validées : ', error);
+    });
+  } else {
+    alert("Il n'y a pas d'éléments à valider.");
   }
+}
+
 
   const validateExpensesButton = document.getElementById("validateExpensesButton");
   validateExpensesButton.addEventListener("click", validateExpenses);
