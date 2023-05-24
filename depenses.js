@@ -103,22 +103,23 @@ function removeItem(index) {
   }
 
 
-  function validateExpenses() {
+function validateExpenses() {
     if (itemList.length > 0) {
       validatedExpensesList = validatedExpensesList.concat(itemList);
       localStorage.setItem(
         "validatedExpensesList",
-        JSON.stringify(validatedExpensesList)
+        JSON.stringify(validatedExpensesList.map(item => ({name: item.nom, price: item.prix})))  // Convertir chaque article à un format avec 'name' et 'price'
       );
       itemList = [];
-      localStorage.setItem("itemList", JSON.stringify(itemList));
-      updateItemList();
+      updateItemList();  // Mettre à jour la liste d'articles sur la page
+      saveToLocalStorage();  // Sauvegarder le nouveau itemList dans localStorage
       updateValidatedExpensesList();
       updateRemainingAmount();
     } else {
       alert("Il n'y a pas d'éléments à valider.");
     }
   }
+
 
   function saveToLocalStorage() {
     localStorage.setItem("remainingAmount", remainingAmount);
