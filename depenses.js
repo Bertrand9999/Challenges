@@ -14,12 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       db.collection("expenses")
         .add(item)
-        .then((docRef) => {
-          item.id = docRef.id; // Ajoutez cette ligne pour récupérer l'ID de l'élément ajouté
-          remainingAmount -= itemPrice;
-          updateRemainingAmount();
-          updateItemList();
-        })
         .catch((error) => {
           console.error("Erreur lors de l'ajout de la dépense :", error);
         });
@@ -58,10 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
     db.collection("expenses")
       .doc(itemId)
       .delete()
-      .then(() => {
-        updateRemainingAmount();
-        updateItemList();
-      })
       .catch((error) => {
         console.error("Erreur lors de la suppression de la dépense :", error);
       });
