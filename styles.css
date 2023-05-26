@@ -3,6 +3,17 @@ html, body {
   margin: 0;
 }
 
+video {
+      /* Fait en sorte que la vidéo s'étende pour remplir le plus possible l'espace disponible, tout en conservant son aspect */
+      min-width: 100%;
+      min-height: 100%;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1; /* Pour s'assurer que la vidéo est derrière vos autres contenus */
+    }
+
 .wrapper {
   min-height: 100%;
   display: flex;
