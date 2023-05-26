@@ -4,15 +4,14 @@ html, body {
 }
 
 video {
-      /* Fait en sorte que la vidéo s'étende pour remplir le plus possible l'espace disponible, tout en conservant son aspect */
-      min-width: 100%;
-      min-height: 100%;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: -1; /* Pour s'assurer que la vidéo est derrière vos autres contenus */
-    }
+  min-width: 100%;
+  min-height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1; 
+}
 
 .wrapper {
   min-height: 100%;
@@ -106,7 +105,6 @@ ul {
   border-radius: 10px;
 }
 
-/* Media query pour les écrans de petite taille (jusqu'à 600px de large) */
 @media (max-width: 600px) {
   .img-container {
     width: 100%;
@@ -121,7 +119,6 @@ ul {
   }
 }
 
-/* Media query pour les écrans de taille moyenne (entre 601px et 1200px de large) */
 @media (min-width: 601px) and (max-width: 1200px) {
   .img-container {
     width: 50%;
@@ -144,9 +141,9 @@ ul {
 
 .sidebar {
   position: fixed;
-  top: 100px; /* Ajouter une marge en haut */
+  top: 100px;
   right: 0;
-  bottom: 50px; /* Ajouter une marge en bas */
+  bottom: 50px;
   width: 300px;
   padding: 1rem;
   background-color: white;
@@ -157,8 +154,8 @@ ul {
   gap: 1rem;
   overflow-y: auto;
   float: right;
-   padding-top: 120px; /* Ajustez cette valeur en fonction de la hauteur de votre header */
-  padding-bottom: 100px; /* Ajustez cette valeur en fonction de la hauteur de votre footer */
+  padding-top: 120px;
+  padding-bottom: 100px;
 }
 
 header {
@@ -184,59 +181,58 @@ footer {
 }
 
 .content-wrapper {
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-    text-align: left; /* Ajout de la propriété text-align */
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  text-align: left; 
 }
 
 .timer {
-    display: inline-flex;
-    gap: 10px;
+  display: inline-flex;
+  gap: 10px;
 }
 
 .countdown-number {
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    font-weight: bold;
-    white-space: nowrap;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
 .poetic-text {
-    display: flex;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    max-width: 90%;
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+  display: flex;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 90%;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
-
 
 .stockholm-image {
-    max-width: 80%;
-    max-height: 30vh;
-    border-radius: 10px;
-    float: left; /* Ajout de la propriété float */
-    margin-right: 1rem; /* Ajout d'une marge à droite pour éviter que le texte ne se colle à l'image */
+  max-width: 80%;
+  max-height: 30vh;
+  border-radius: 10px;
+  float: left;
+  margin-right: 1rem;
 }
 
-  .separator {
-    border-left: 2px solid #000;
-    height: 100%;
-    position: absolute;
-    left: 35%; /* Modifiez cette valeur pour ajuster la position horizontale de la barre */
-    top: 0; /* Ajouté pour que la barre commence en haut */
-  }
+.separator {
+  border-left: 2px solid #000;
+  height: 100%;
+  position: absolute;
+  left: 35%;
+  top: 0; 
+}
 
 .photo-texts {
-  margin-left: 38%; /* Ajustez cette valeur pour déplacer les photos/descriptions horizontalement */
-  margin-top: 20px; /* Ajoutez une marge en haut pour séparer les photos/descriptions de la photo de Stockholm */
+  margin-left: 38%;
+  margin-top: 20px; 
 }
 
 .photo-text {
@@ -259,9 +255,37 @@ footer {
 }
 
 .photo-text-container {
-  width: calc(100% - 800px); /* Ajustez cette valeur en fonction de la largeur de votre barre latérale et du séparateur */
+  width: calc(100% - 800px); 
 }
+
 .main-content {
   display: flex;
-  margin-left: 36%; /* Ajustez cette valeur en fonction de l'espace souhaité après le contenu précédent */
+  margin-left: 36%; 
+}
+
+.main-content {
+  display: flex;
+}
+
+.photo-text-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.photo-text {
+  width: 100%;
+}
+
+.separator {
+  width: 2%;
+}
+
+.sidebar {
+  width: 48%;
+}
+
+.photo-text img {
+  width: 100%;
 }
