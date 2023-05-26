@@ -212,7 +212,7 @@ footer {
     font-size: 1.2rem;
     line-height: 1.6;
     max-width: 90%;
-    white-space: normal;
+    white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
