@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const initialAmount = 400;
+  const initialAmount = 400.00;
   let remainingAmount = initialAmount;
 
   // Obtenir une référence à Firestore
