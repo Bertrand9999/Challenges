@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const initialAmount = 400;
   let remainingAmount = initialAmount;
-  let itemList = [];
 
   // Obtenir une référence à Firestore
   const db = firebase.firestore();
@@ -15,8 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       db.collection("expenses")
         .add(item)
-        .then(() => {
-          itemList.push(item);
+        .then((docRef) => {
+          item.id = docRef.id; // Ajoutez cette ligne pour récupérer l'ID de l'élément ajouté
           remainingAmount -= itemPrice;
           updateRemainingAmount();
           updateItemList();
@@ -33,31 +32,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateRemainingAmount() {
     document.getElementById("remainingAmount").textContent = remainingAmount.toFixed(2);
-    document.getElementById("initialAmount").textContent = initialAmount.toFixed(2);
   }
 
   function updateItemList() {
     const itemListElement = document.getElementById("itemList");
     itemListElement.innerHTML = "";
 
-    itemList.forEach((item, index) => {
-      const li = document.createElement("li");
-      li.textContent = `${item.name} - ${item.price} €`;
-      const removeButton = document.createElement("button");
-      removeButton.textContent = "Supprimer";
-      removeButton.onclick = () => removeItem(index, item.id);
-      li.appendChild(removeButton);
-      itemListElement.appendChild(li);
+    db.collection("expenses").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const item = doc.data();
+        item.id = doc.id;
+
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - ${item.price} €`;
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Supprimer";
+        removeButton.onclick = () => removeItem(item.id);
+        li.appendChild(removeButton);
+        itemListElement.appendChild(li);
+      });
     });
   }
 
-  function removeItem(index, itemId) {
+  function removeItem(itemId) {
     db.collection("expenses")
       .doc(itemId)
       .delete()
       .then(() => {
-        remainingAmount += itemList[index].price;
-        itemList.splice(index, 1);
         updateRemainingAmount();
         updateItemList();
       })
@@ -70,10 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
   addItemButton.addEventListener("click", addItem);
 
   updateRemainingAmount();
+  updateItemList();
 
   // Observer les modifications de la collection "expenses" en temps réel
   db.collection("expenses").onSnapshot((snapshot) => {
-    itemList = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    remainingAmount = initialAmount - snapshot.docs.reduce((total, doc) => total + doc.data().price, 0);
+    updateRemainingAmount();
     updateItemList();
   });
 });
