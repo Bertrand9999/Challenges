@@ -1,25 +1,11 @@
+/* Réinitialisation des styles par défaut */
 html, body {
   height: 100%;
   margin: 0;
+  padding: 0;
 }
 
-video {
-      /* Fait en sorte que la vidéo s'étende pour remplir le plus possible l'espace disponible, tout en conservant son aspect */
-      min-width: 100%;
-      min-height: 100%;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: -1; /* Pour s'assurer que la vidéo est derrière vos autres contenus */
-    }
-
-.wrapper {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
+/* Styles généraux */
 body {
   display: flex;
   flex-direction: column;
@@ -27,140 +13,13 @@ body {
   background-color: #f0f0f0;
 }
 
-.lock_outline {
-  color: yellow;
-}
-
-nav ul {
-  padding: 0;
-  list-style-type: none;
-}
-
-nav ul li {
-  display: inline;
-  margin-right: 1rem;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: white;
-}
-
-nav ul li a:hover {
-  color: #cccccc;
-}
-
-.home {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-main {
-  flex-grow: 1;
-  padding: 2rem;
-  overflow: hidden;
-}
-
-.img-container {
-  width: 500px;
-  height: 500px;
-  margin-right: 1rem;
-}
-
-.text-container {
-  height: 500px;
-  -webkit-columns: 500px auto;
-  -moz-columns: 500px auto;
-  columns: 500px auto;
-  -webkit-column-gap: 1rem;
-  -moz-column-gap: 1rem;
-  column-gap: 1rem;
-  -webkit-column-fill: auto;
-  -moz-column-fill: auto;
-  column-fill: auto;
-  overflow: hidden;
-}
-
-.text-part {
-  overflow: auto;
-  white-space: pre-wrap;
-}
-
-other {
-  padding: 2rem;
-}
-
-h2 {
-  margin-bottom: 1rem;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.destination-img {
-  width: 400px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-/* Media query pour les écrans de petite taille (jusqu'à 600px de large) */
-@media (max-width: 600px) {
-  .img-container {
-    width: 100%;
-    height: auto;
-  }
-
-  .text-container {
-    height: auto;
-    -webkit-columns: 100% auto;
-    -moz-columns: 100% auto;
-    columns: 100% auto;
-  }
-}
-
-/* Media query pour les écrans de taille moyenne (entre 601px et 1200px de large) */
-@media (min-width: 601px) and (max-width: 1200px) {
-  .img-container {
-    width: 50%;
-    height: auto;
-  }
-
-  .text-container {
-    height: auto;
-    -webkit-columns: 50% auto;
-    -moz-columns: 50% auto;
-    columns: 50% auto;
-  }
-}
-
-.sidebar input {
-  display: block;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.sidebar {
-  position: fixed;
-  top: 100px; /* Ajouter une marge en haut */
-  right: 0;
-  bottom: 50px; /* Ajouter une marge en bas */
-  width: 300px;
-  padding: 1rem;
-  background-color: white;
-  box-shadow: -3px 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+.wrapper {
+  min-height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  overflow-y: auto;
-  float: right;
-   padding-top: 120px; /* Ajustez cette valeur en fonction de la hauteur de votre header */
-  padding-bottom: 100px; /* Ajustez cette valeur en fonction de la hauteur de votre footer */
 }
 
+/* Styles du header */
 header {
   background-color: #000080;
   color: white;
@@ -170,6 +29,102 @@ header {
   position: relative;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+/* Styles du contenu principal */
+main {
+  flex-grow: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stockholm-image {
+  max-width: 80%;
+  max-height: 30vh;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.poetic-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.photo-text-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.photo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.photo-text img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.photo-text p {
+  margin-top: 10px;
+}
+
+/* Styles de la barre latérale */
+.sidebar {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  bottom: 50px;
+  width: 300px;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: -3px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  overflow-y: auto;
+}
+
+.sidebar h2,
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+/* Styles du footer */
 footer {
   background-color: #000080;
   color: white;
@@ -181,87 +136,4 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
-}
-
-.content-wrapper {
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-    text-align: left; /* Ajout de la propriété text-align */
-}
-
-.timer {
-    display: inline-flex;
-    gap: 10px;
-}
-
-.countdown-number {
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.poetic-text {
-    display: flex;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    max-width: 90%;
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-
-.stockholm-image {
-    max-width: 80%;
-    max-height: 30vh;
-    border-radius: 10px;
-    float: left; /* Ajout de la propriété float */
-    margin-right: 1rem; /* Ajout d'une marge à droite pour éviter que le texte ne se colle à l'image */
-}
-
-  .separator {
-    border-left: 2px solid #000;
-    height: 100%;
-    position: absolute;
-    left: 35%; /* Modifiez cette valeur pour ajuster la position horizontale de la barre */
-    top: 0; /* Ajouté pour que la barre commence en haut */
-  }
-
-.photo-texts {
-  margin-left: 38%; /* Ajustez cette valeur pour déplacer les photos/descriptions horizontalement */
-  margin-top: 20px; /* Ajoutez une marge en haut pour séparer les photos/descriptions de la photo de Stockholm */
-}
-
-.photo-text {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-}
-
-.photo-text.left img {
-  margin-right: 20px;
-}
-
-.photo-text.right img {
-  order: 1;
-  margin-left: 20px;
-}
-
-.photo-text p {
-  flex: 1;
-}
-
-.photo-text-container {
-  width: calc(100% - 800px); /* Ajustez cette valeur en fonction de la largeur de votre barre latérale et du séparateur */
-}
-.main-content {
-  display: flex;
-  margin-left: 36%; /* Ajustez cette valeur en fonction de l'espace souhaité après le contenu précédent */
 }
