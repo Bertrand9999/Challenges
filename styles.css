@@ -208,12 +208,15 @@ footer {
 }
 
 .poetic-text {
-    display: flex; /* Ajout de la propriété display */
+    display: flex;
     font-size: 1.2rem;
     line-height: 1.6;
     max-width: 90%;
-    white-space: nowrap;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
+
 
 .stockholm-image {
     max-width: 80%;
