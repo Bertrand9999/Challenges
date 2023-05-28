@@ -265,3 +265,12 @@ footer {
   display: flex;
   margin-left: 36%; /* Ajustez cette valeur en fonction de l'espace souhaité après le contenu précédent */
 }
+
+.container1 {
+            display: flex;
+        }
+.box1 {
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid black;
+        }
