@@ -267,9 +267,15 @@ footer {
   margin-left: 36%; /* Ajustez cette valeur en fonction de l'espace souhaité après le contenu précédent */
 }
 
-.left-container,
+.left-container {
+  width: calc(50% - 300px);
+  float: left;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
 .right-container {
-  width: calc(50% - 20px);
+  width: calc(50% + 300px);
   float: left;
   padding: 1rem;
   box-sizing: border-box;
