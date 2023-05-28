@@ -246,12 +246,12 @@ footer {
 }
 
 .photo-text.left img {
-  margin-right: 20px;
+  margin-right: 2px;
 }
 
 .photo-text.right img {
   order: 1;
-  margin-left: 20px;
+  margin-left: 2px;
 }
 
 .photo-text p {
@@ -259,7 +259,8 @@ footer {
 }
 
 .photo-text-container {
-  width: calc(100% - 800px); /* Ajustez cette valeur en fonction de la largeur de votre barre latérale et du séparateur */
+  margin-left: 2px;
+  width: calc(100% - 400px); /* Ajustez cette valeur en fonction de la largeur de votre barre latérale et du séparateur */
 }
 .main-content {
   display: flex;
