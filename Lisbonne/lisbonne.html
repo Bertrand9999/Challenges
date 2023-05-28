@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lisbonne</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+   <!-- Firebase -->
+   <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+   <script>
+      const firebaseConfig = {
+      apiKey: "AIzaSyBhb-gYuXWKOnCuN_z4FEt17SkW_nOPqao",
+      authDomain: "challenge-c426a.firebaseapp.com",
+      projectId: "challenge-c426a",
+      storageBucket: "challenge-c426a.appspot.com",
+      messagingSenderId: "428726302902",
+      appId: "1:428726302902:web:772e20c8915a593c2c0e17"
+    };
+     // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="depenses.js"></script>
+</head>
+<body>
+<header>
+  <div class="header-left">
+    <div style="display: flex; align-items: center;">
+           <a href="https://bertrand9999.github.io/Challenges">
+          <img src="https://media.licdn.com/dms/image/C4D03AQGtnEQNP2GTNw/profile-displayphoto-shrink_800_800/0/1621501219643?e=2147483647&v=beta&t=AY_7CGL8fkEs5NZRQZE-_qRcSPYn9rYRYHIxtPgFy80" alt="Manue" width="50" height="50" style="float: left;">
+      </a>
+        <p style="margin-left: 10px;">Défiez vos 30 ans !</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <input type="text" id="secretWord" placeholder="Entrez le mot secret">
+    <button onclick="checkSecretWord()">Valider</button>
+    <script src="secret-word.js"></script>
+  </div>
+  <h1>Explorer l'inconnu : voyages, rencontres, aventures</h1>
+  <nav>
+    <ul>
+      <li class="lock1"><i class="material-icons">lock_outline</i></li>
+      <li class="lock2"><i class="material-icons">lock_outline</i></li>
+      <li class="lock3"><i class="material-icons">lock_outline</i></li>
+    </ul>
+  </nav>
+</header>
+
+
+  <main>
+  <h2>Lisbonne</h2>
+  <img class="destination-img" src="https://th.bing.com/th/id/R.2cd7f81e65073cc3f67e58999dee39fd?rik=DET9YmRVOczljQ&pid=ImgRaw&r=0" alt="Image de Lisbonne">
+  <p>Bienvenue à Lisbonne, la capitale du Portugal.</p>
+  <h3>Énigmes</h3>
+  <ul>
+    <li><a href="lisbonne-enigme1.html">Énigme 1</a></li>
+    <li><a href="lisbonne-enigme2.html">Énigme 2</a></li>
+    <li><a href="lisbonne-enigme3.html">Énigme 3</a></li>
+  </ul>
+  <h3>Challenges à effectuer à Lisbonne</h3>
+  <ul>
+    <li><a href="lisbonne-challenge1.html">Challenge 1</a></li>
+    <li><a href="lisbonne-challenge2.html">Challenge 2</a></li>
+    <li><a href="lisbonne-challenge3.html">Challenge 3</a></li>
+  </ul>
+</main>
+  <div class="sidebar">
+    <h2>Compteur de dépenses</h2>
+    <p>Somme initiale : <span id="initialAmount">400</span> €</p>
+    <p>Somme restante : <span id="remainingAmount">400</span> €</p>
+
+    <h3>Ajouter un élément</h3>
+    <input type="text" id="itemName" placeholder="Nom de l'élément">
+    <input type="number" id="itemPrice" placeholder="Prix">
+    <button id="addItemButton">Ajouter</button>
+
+    <h3>Dépenses</h3>
+    <ul id="itemList"></ul>
+  </div>
+<footer>
+    <p>&copy; 2023 Explorer l'inconnu : voyages, rencontres, aventures. Tous droits réservés.</p>
+  </footer>
+</body>
+</html>
